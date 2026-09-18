@@ -30,3 +30,17 @@ input_data["CarrierDelay"] = pd.to_numeric(input_data["CarrierDelay"], errors="c
 
 input_data["CarrierDelayClean"] = input_data["CarrierDelay"].fillna(0)
 
+
+def categorize_delay(x):
+    if x == 0:
+        return "No Delay"
+    elif x <= 15:
+        return "Short Delay"
+    elif x <= 60:
+        return "Moderate Delay"
+    else:
+        return "Long Delay"
+
+input_data["CarrierDelayCategory"] = input_data["CarrierDelayClean"].apply(
+    categorize_delay
+)
