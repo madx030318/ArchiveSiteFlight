@@ -26,6 +26,8 @@ void SearchArchive(const std::string& Query);
 void ShowStatistics();
 
 bool GetServerStatus() const;
+
+string ReadArchiveFile();
 };
 
 #endif
