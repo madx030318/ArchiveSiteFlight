@@ -60,3 +60,9 @@ bool ArchiveServer::GetServerStatus() const
 {
     return bIsRunning;
 }
+
+string ArchiveServer::ReadArchiveFile() {
+
+  ifstream file("../backend/cleaned_archive.json");
+
+}
