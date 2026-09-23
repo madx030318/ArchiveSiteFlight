@@ -30,7 +30,16 @@ void ArchiveServer::SearchArchive(const std::string& Query)
     }
 
   TotalRequests++;
+
+  string Data = ReadArchiveFile();
+  if (Data.empty()) 
+  {
+    cout << "Archive is empty." << endl;
+    return;
+
+  }
   cout << "Searching archive for: " << Query << endl;
+  cout << "Archive has been loaded successfully" << endl;
 
 }
 
@@ -64,5 +73,20 @@ bool ArchiveServer::GetServerStatus() const
 string ArchiveServer::ReadArchiveFile() {
 
   ifstream file("../backend/cleaned_archive.json");
+
+  if (!file.is_open())
+  {
+    cout << "Error : The file could not be found and therefore opened" << endl;
+    return "";
+
+  }
+
+  stringstream buffer;
+
+  buffer << file.rdbuf();
+
+  file.close();
+
+  return buffer.str();
 
 }
