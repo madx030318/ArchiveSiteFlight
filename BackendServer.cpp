@@ -21,7 +21,7 @@ void ArchiveServer::StopServer() {
 
 }
 
-void ArchiveServer::SearchArchive(const std::string& Query)
+void ArchiveServer::SearchArchive(const string& Query)
 {
     if (!bIsRunning)
     {
@@ -46,19 +46,15 @@ void ArchiveServer::SearchArchive(const std::string& Query)
 
 void ArchiveServer::ShowStatistics()
 {
-    std::cout << "===== ARCHIVE SERVER STATISTICS =====" << std::endl;
+    cout << "===== ARCHIVE SERVER STATISTICS =====" << endl;
 
     cout << "Server: "
               << ServerName
               << std::endl;
 
-    cout << "Port: "
-              << Port
-              << std::endl;
+    cout << "Port: " << Port << endl;
 
-    cout << "Requests: "
-              << TotalRequests
-              << std::endl;
+    cout << "Requests: " << TotalRequests << endl;
 
     cout << "Records: "
               << TotalRecords
