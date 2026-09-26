@@ -4,11 +4,30 @@
 int main() {
 
   crow::SimpleApp App;
-  CROW_ROUTE(App, "/")
+  CROW_ROUTE(App, "/api/archive")
   ([]()
     {
 
-      return "Archive History Server is running!";
+      crow::json::wvalue Response;
+
+        Response["status"] = "success";
+        Response["message"] = "Archive data received";
+
+        Response["records"] = crow::json::wvalue::list({
+            {
+                {"year", 2026},
+                {"category", "Flight"},
+                {"source", "Flight Dataset"},
+                {"departureTime", "08:30"},
+                {"arrivalTime", "11:45"}
+            },
+            {
+                {"year", 2026},
+                {"category", "Flight"},
+                {"source", "Flight Dataset"},
+                {"departureTime", "14:20"},
+                {"arrivalTime", "17:10"}
+            }
 
     });
 
