@@ -19,3 +19,35 @@ class ArchiveBridge:
             "r",
             encoding="utf-8"
         ) as file:
+            return json.load(file)
+    def search(self, query="", year=None, category=None, source=None):
+        records = self.load_data()
+        results = []
+        for record in records:
+            if query:
+                text = json.dumps(record).lower()
+                if query.lower() not in text:
+                    continue
+                if year:
+                    if str(record.get("Year")) != str(year):
+                    continue
+                if category:
+                    if record.get("Category") != category:
+                    continue
+
+            if source:
+
+                if record.get("Source") != source:
+                    continue
+
+            results.append(record)
+            return results
+
+
+if __name__ == "__main__":
+
+    bridge = ArchiveBridge()
+
+    results = bridge.search()
+
+    print(json.dumps(results, indent=4))
